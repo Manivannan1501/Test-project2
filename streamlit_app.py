@@ -90,7 +90,7 @@ elif section == "Add Listing":
         except Exception as e:
             st.error(f"Error: {e}")
 elif section == "Delete Listing":
-    st.header("🗑️ Delete Food Listing")
+    st.header("Delete Food Listing")
 
     listings = pd.read_sql_query("SELECT * FROM food_listings", conn)
     st.subheader("Current Food Listings")
@@ -184,11 +184,7 @@ elif section == "Queries":
             "sql": "SELECT city, COUNT(*) AS total_listings FROM providers JOIN food_listings ON providers.Provider_ID = food_listings.Provider_ID GROUP BY city ORDER BY total_listings DESC LIMIT 5;",
             "chart": "bar"
         },
-        "16. Expired Listings": {
-            "sql": "SELECT COUNT(*) AS expired_listings FROM food_listings WHERE DATE(Expiry_Date) < DATE('now');",
-            "chart": None
-        },
-        "17. Claim Completion Status Breakdown": {
+        "16. Claim Completion Status Breakdown": {
             "sql": "SELECT Status, COUNT(*) AS count FROM claims GROUP BY Status;",
             "chart": "pie"
         }
